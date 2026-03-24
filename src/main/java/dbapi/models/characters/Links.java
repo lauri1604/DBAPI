@@ -1,8 +1,7 @@
 package dbapi.models.characters;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Links{
+public class Links {
 
 	@JsonProperty("next")
 	private String next;
@@ -35,7 +34,7 @@ public class Links{
 	@Override
  	public String toString(){
 		return 
-			"Links{" + 
+			"Links{" +
 			"next = '" + next + '\'' + 
 			",previous = '" + previous + '\'' + 
 			",last = '" + last + '\'' + 

@@ -1,8 +1,9 @@
-package dbapi.models.characters;
+package dbapi.models.planets;
+
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Response{
+public class ResponsePlanets {
 
 	@JsonProperty("meta")
 	private Meta meta;
@@ -11,17 +12,29 @@ public class Response{
 	private Links links;
 
 	@JsonProperty("items")
-	private List<Character> items;
+	private List<Planet> items;
+
+	public void setMeta(Meta meta){
+		this.meta = meta;
+	}
 
 	public Meta getMeta(){
 		return meta;
+	}
+
+	public void setLinks(Links links){
+		this.links = links;
 	}
 
 	public Links getLinks(){
 		return links;
 	}
 
-	public List<Character> getItems(){
+	public void setItems(List<Planet> items){
+		this.items = items;
+	}
+
+	public List<Planet> getItems(){
 		return items;
 	}
 
@@ -30,7 +43,7 @@ public class Response{
 		return 
 			"ResponsePlanets{" +
 			"meta = '" + meta + '\'' + 
-			",links = '" + links + '\'' +
+			",links = '" + links + '\'' + 
 			",items = '" + items + '\'' + 
 			"}";
 		}

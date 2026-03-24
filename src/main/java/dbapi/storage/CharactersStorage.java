@@ -9,8 +9,11 @@ public class CharactersStorage {
     public void cargarDatos(){
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            URL url = new URL("https://dragonball-api.com/api/characters");
-            List<Response> List = objectMapper.readValue(url, new TypeReference<List<Response>>() {});
+            System.out.println("Todos los personajes de Dragon ball:");
+            URL url = new URL("https://dragonball-api.com/api/characters?limit=58");
+            Response r = objectMapper.readValue(url, Response.class);
+            r.getItems().forEach(System.out::println);
+            System.out.println("Nº de total de personajes: " + r.getItems().stream().count());
         }catch(Exception e){
             throw new RuntimeException(e);
         }

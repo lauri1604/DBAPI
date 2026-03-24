@@ -1,8 +1,7 @@
 package dbapi.models.characters;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CharactersItem {
+public class Character {
 
     @JsonProperty("image")
     private String image;
@@ -76,17 +75,17 @@ public class CharactersItem {
 
     @Override
     public String toString() {
-        return "CharactersItem{" +
-                "id = '" + id + '\'' +
-                "name = '" + name + '\'' +
-                "ki = '" + ki + '\'' +
-                "maxKi = '" + maxKi + '\'' +
-                "race='" + race + '\'' +
-                "gender='" + gender + '\'' +
-                "description='" + description + '\'' +
-                "image='" + image + '\'' +
-                "affiliation='" + affiliation + '\'' +
-                "deletedAt='" + deletedAt + '\'' +
+        return "Character{" +
+                "id = '" + id + '\'' + " " +
+                "name = '" + name + '\'' +  " " +
+                "ki = '" + ki + '\'' + " " +
+                "maxKi = '" + maxKi + '\'' +  " " +
+                "race='" + race + '\'' + " " +
+                "gender='" + gender + '\'' + " " +
+                "description='" + description + '\'' + " " +
+                "image='" + image + '\'' +  " " +
+                "affiliation='" + affiliation + '\'' + " " +
+                "deletedAt='" + deletedAt + '\'' + " " +
                 "}";
     }
 }
