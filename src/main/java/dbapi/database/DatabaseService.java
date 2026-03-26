@@ -1,12 +1,15 @@
-/*
 package dbapi.database;
 import dbapi.config.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.*;
+import java.util.*;
 
-import java.sql.Connection;
-
-public class DatabaseService implements DatabaseManager{
+public class DatabaseService implements DatabaseManager {
 
     private final Logger logger = LoggerFactory.getLogger(DatabaseService.class.getName());
 
@@ -43,7 +46,7 @@ public class DatabaseService implements DatabaseManager{
             PreparedStatement statement = connection.prepareStatement(tables);
             statement.executeUpdate();
 
-            logger.debug("Tabla estudiantes creada");
+            logger.debug("Tabla personajes creada");
         } catch (Exception e) {
             logger.error("Error al crear las tablas: " + e.getMessage());
         }
@@ -164,4 +167,3 @@ public class DatabaseService implements DatabaseManager{
         }
     }
 }
-*/

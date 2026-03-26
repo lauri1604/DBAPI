@@ -3,11 +3,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Character {
 
-    @JsonProperty("image")
-    private String image;
+    @JsonProperty("id")
+    private int id;
 
-    @JsonProperty("deletedAt")
-    private Object deletedAt;
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("ki")
+    private String ki;
+
+    @JsonProperty("maxKi")
+    private String maxKi;
 
     @JsonProperty("race")
     private String race;
@@ -15,23 +21,18 @@ public class Character {
     @JsonProperty("gender")
     private String gender;
 
-    @JsonProperty("affiliation")
-    private String affiliation;
-
-    @JsonProperty("name")
-    private String name;
-
     @JsonProperty("description")
     private String description;
 
-    @JsonProperty("id")
-    private int id;
+    @JsonProperty("image")
+    private String image;
 
-    @JsonProperty("ki")
-    private String ki;
+    @JsonProperty("affiliation")
+    private String affiliation;
 
-    @JsonProperty("maxKi")
-    private String maxKi;
+    @JsonProperty("deletedAt")
+    private Object deletedAt;
+
 
     public String getImage() {
         return image;
