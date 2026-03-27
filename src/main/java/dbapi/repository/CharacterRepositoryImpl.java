@@ -60,7 +60,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
                 character != null ? character.getKi() : null,
                 character != null ? character.getMaxKi() : null,
                 character != null ? character.getGender() : null,
-                character != null ? character.getRace() : null,
+                character != null ? character.getRace() : null
 
         int id = -1;
         if (generatedId instanceof Number) {
