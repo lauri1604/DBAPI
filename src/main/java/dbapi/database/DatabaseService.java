@@ -12,7 +12,6 @@ import java.util.*;
 public class DatabaseService implements DatabaseManager {
 
     private final Logger logger = LoggerFactory.getLogger(DatabaseService.class.getName());
-
     private Connection connection = null;
 
     public DatabaseService() {
@@ -43,10 +42,17 @@ public class DatabaseService implements DatabaseManager {
             URL resourceUrl = ClassLoader.getSystemResource("tables.sql");
             Path path = Paths.get(resourceUrl.toURI());
             String tables = Files.readString(path);
-            PreparedStatement statement = connection.prepareStatement(tables);
-            statement.executeUpdate();
-
-            logger.debug("Tabla personajes creada");
+            
+            Statement statement = connection.createStatement();
+            String[] sqlStatements = tables.split(";");
+            for (String sql : sqlStatements) {
+                sql = sql.trim();
+                if (!sql.isEmpty()) {
+                    statement.execute(sql);
+                }
+            }
+            statement.close();
+            logger.debug("Tabla characters creada");
         } catch (Exception e) {
             logger.error("Error al crear las tablas: " + e.getMessage());
         }
@@ -58,8 +64,16 @@ public class DatabaseService implements DatabaseManager {
             URL resourceUrl = ClassLoader.getSystemResource("data.sql");
             Path path = Paths.get(resourceUrl.toURI());
             String data = Files.readString(path);
-            PreparedStatement statement = connection.prepareStatement(data);
-            statement.executeUpdate();
+            
+            Statement statement = connection.createStatement();
+            String[] sqlStatements = data.split(";");
+            for (String sql : sqlStatements) {
+                sql = sql.trim();
+                if (!sql.isEmpty()) {
+                    statement.execute(sql);
+                }
+            }
+            statement.close();
             logger.debug("Datos cargados");
         } catch (Exception e) {
             logger.error("Error al cargar los datos: " + e.getMessage());

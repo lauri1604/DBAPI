@@ -1,6 +1,7 @@
 package dbapi.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dbapi.database.DatabaseService;
+import dbapi.models.characters.Character;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +46,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     public List<Character> findByNombre(String nombre) {
         logger.debug("Buscando personajes por nombre: " + nombre);
 
-        String sql = "SELECT * FROM personajes WHERE LOWER(nombre) LIKE LOWER(?)";
+        String sql = "SELECT * FROM characters WHERE LOWER(name) LIKE LOWER(?)";
         return db.select(sql, "%" + nombre + "%").stream()
                 .map(this::toModel)
                 .collect(Collectors.toList());
@@ -55,12 +56,15 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     public Character save(Character character) {
         logger.debug("Guardando personaje: " + (character != null ? character.getName() : "null"));
         String sql = "INSERT INTO characters (name, ki, maxKi, description, image, gender, race, affiliation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        Object generatedId = db.insertAndGetId(sql, character != null ? character.getid() : null,
+        Object generatedId = db.insertAndGetId(sql,
                 character != null ? character.getName() : null,
                 character != null ? character.getKi() : null,
                 character != null ? character.getMaxKi() : null,
+                character != null ? character.getDescription() : null,
+                character != null ? character.getImage() : null,
                 character != null ? character.getGender() : null,
-                character != null ? character.getRace() : null
+                character != null ? character.getRace() : null,
+                character != null ? character.getAffiliation() : null);
 
         int id = -1;
         if (generatedId instanceof Number) {
@@ -73,32 +77,64 @@ public class CharacterRepositoryImpl implements CharacterRepository {
 
     @Override
     public Character update(int id, Character item) {
-        return null;
+        logger.debug("Actualizando personaje con id: " + id);
+        String sql = "UPDATE characters SET name=?, ki=?, maxKi=?, description=?, image=?, gender=?, race=?, affiliation=? WHERE id=?";
+        db.update(sql,
+                item.getName(),
+                item.getKi(),
+                item.getMaxKi(),
+                item.getDescription(),
+                item.getImage(),
+                item.getGender(),
+                item.getRace(),
+                item.getAffiliation(),
+                id);
+        return findById(id);
     }
 
     @Override
     public Character delete(int id) {
-        return null;
+        logger.debug("Eliminando personaje con id: " + id);
+        Character character = findById(id);
+        String sql = "DELETE FROM characters WHERE id=?";
+        db.update(sql, id);
+        return character;
     }
 
     @Override
     public List<Character> findByName(String name) {
-        return List.of();
+        logger.debug("Buscando personajes por nombre: " + name);
+        String sql = "SELECT * FROM characters WHERE LOWER(name) LIKE LOWER(?)";
+        return db.select(sql, "%" + name + "%").stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Character> findByGender(String gender) {
-        return List.of();
+        logger.debug("Buscando personajes por género: " + gender);
+        String sql = "SELECT * FROM characters WHERE LOWER(gender) = LOWER(?)";
+        return db.select(sql, gender).stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Character> findByRace(String race) {
-        return List.of();
+        logger.debug("Buscando personajes por raza: " + race);
+        String sql = "SELECT * FROM characters WHERE LOWER(race) = LOWER(?)";
+        return db.select(sql, race).stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Character> findByAffiliation(String affiliation) {
-        return List.of();
+        logger.debug("Buscando personajes por afiliación: " + affiliation);
+        String sql = "SELECT * FROM characters WHERE LOWER(affiliation) = LOWER(?)";
+        return db.select(sql, affiliation).stream()
+                .map(this::toModel)
+                .collect(Collectors.toList());
     }
 
     // Convierte una fila (Map) a CharactersItem usando ObjectMapper

@@ -33,6 +33,9 @@ public class Character {
     @JsonProperty("deletedAt")
     private Object deletedAt;
 
+    public Character() {
+    }
+
     public Character(int id, String name, String ki, String maxKi, String race, String gender, String description, String image, String affiliation) {
         this.id = id;
         this.name = name;

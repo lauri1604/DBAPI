@@ -91,16 +91,20 @@ Gestiona la lectura y escritura de datos desde/hacia archivos JSON obtenidos de 
 ### `CharacterStorage.java`
 Responsable de:
 - Consumir los endpoints de la API.
-- Parsear las respuestas JSON.
 - Crear instancias de los modelos (`Character`).
 - Proveer datos a `DatabaseService` para su inserción.
 
-### `PlanetStorage.java`
-Responsable de:
-- Consumir los endpoints de la API.
-- Parsear las respuestas JSON.
-- Crear instancias de los modelos (`Planet`).
----
+[//]: # (### `PlanetStorage.java`)
+
+[//]: # (Responsable de:)
+
+[//]: # (- Consumir los endpoints de la API.)
+
+[//]: # (- Parsear las respuestas JSON.)
+
+[//]: # (- Crear instancias de los modelos &#40;`Planet`&#41;.)
+
+[//]: # (---)
 
 [//]: # (##  Exportación &#40;`service`&#41;)
 

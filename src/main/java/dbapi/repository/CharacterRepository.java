@@ -1,4 +1,5 @@
 package dbapi.repository;
+import dbapi.models.characters.Character;
 import java.util.List;
 
 public interface CharacterRepository extends CRUDRepository<Character> {
