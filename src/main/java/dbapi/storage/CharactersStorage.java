@@ -34,7 +34,7 @@ public class CharactersStorage {
     public void guardarDatos(){
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            logger.info("\n" + "Iniciando carga de personajes de Dragon Ball desde API");
+            logger.info("Iniciando carga de personajes de Dragon Ball desde API");
             URI uri = new URI("https://dragonball-api.com/api/characters?limit=58");
             Response r = objectMapper.readValue(uri.toURL(), Response.class);
             
@@ -44,7 +44,7 @@ public class CharactersStorage {
                 logger.debug("Personaje guardado: " + character.getName());
             });
         }catch(Exception e){
-            logger.error("Error cargando datos: " + e.getMessage());
+            logger.error("Error guardando datos: " + e.getMessage());
             throw new RuntimeException(e);
         }
     }

@@ -23,8 +23,6 @@ public class ExportService {
     private static final String CSV_FILENAME = "personajes.csv";
     private final ObjectMapper mapper;
 
-
-
     public boolean exportCharactersToCSV() {
         Path dataDir = Path.of(DATA_DIR);
         Path filePath = dataDir.resolve(CSV_FILENAME);
