@@ -15,7 +15,7 @@ Proyecto de recuperación de la unidad 1 acceso a datos
 
 ## Manual técnico
 
-Este proyecto implementa una arquitectura modular para consumir datos desde una API externa (en formato JSON), almacenarlos en una base de datos local y permitir su exportación nuevamente a archivos JSON.  
+Este proyecto implementa una arquitectura modular para consumir datos desde una API externa (en formato JSON), almacenarlos en una base de datos local y permitir su exportación nuevamente a archivos CSV.  
 El objetivo es integrar un flujo completo de **ingesta, persistencia y exportación de datos**, aplicando principios de separación de responsabilidades y patrones de diseño (como Repository y Service).
 
 ---
@@ -35,7 +35,7 @@ Define la configuración general del proyecto:
 
 ---
 
-## ️ Base de Datos (`database`)
+## ️Base de Datos (`database`)
 
 ### `DatabaseManager.java`
 Responsable de:
@@ -104,46 +104,52 @@ Responsable de:
 
 [//]: # (- Crear instancias de los modelos &#40;`Planet`&#41;.)
 
-[//]: # (---)
+---
 
-[//]: # (##  Exportación &#40;`service`&#41;)
+##  Exportación (`service`)
 
-[//]: # ()
-[//]: # (### `ExportService.java`)
+### `ExportService.java`
 
-[//]: # (Permite exportar los datos almacenados en la base de datos a archivos CSV locales:)
+Permite exportar los datos almacenados en la base de datos a archivos CSV locales:
 
-[//]: # (- Recupera la información mediante los repositorios.)
+- Recupera la información mediante los repositorios.
 
-[//]: # (- Serializa los objetos en formato CSV.)
+- Serializa los objetos en formato CSV.
 
-[//]: # (- Guarda los archivos en el sistema de ficheros.)
+- Guarda los archivos en el sistema de ficheros.
 
-[//]: # ()
-[//]: # (---)
 
-[//]: # ()
-[//]: # (##  Flujo General de Ejecución)
+---
 
-[//]: # ()
-[//]: # (1. **Storage** obtiene los datos de la API en formato JSON.)
 
-[//]: # (2. **DatabaseService** recibe los objetos y los inserta en la base de datos usando los **repositories**.)
+##  Flujo General de Ejecución
 
-[//]: # (3. **ExportService** puede generar un nuevo CSV consolidado desde los datos locales.)
+1. **Storage** obtiene los datos de la API en formato JSON.
 
-[//]: # ()
-[//]: # (---)
+2. **DatabaseService** recibe los objetos y los inserta en la base de datos usando los **repositories**.
 
-[//]: # ()
-[//]: # (##  Requisitos)
+3. **ExportService** puede generar un nuevo CSV consolidado desde los datos locales.
 
-[//]: # ()
-[//]: # (- Java 17+)
 
-[//]: # (- Dependencias JDBC &#40;según la BD usada&#41;)
+---
 
-[//]: # (- Librerías JSON &#40;ej. `Gson`, `Jackson`&#41;)
 
-[//]: # ()
-[//]: # (---)
+##  Requisitos
+
+- Java 17+
+
+- Dependencias JDBC (según la BD usada)
+
+- Librerías JSON (ej. `Gson`, `Jackson`)
+
+
+---
+## Propuestas de Mejora
+- Implementar manejo avanzado de errores y logging.
+- Añadir pruebas unitarias e integración.
+- Añadir un control de acceso para el usuario
+- 
+##  Conclusión
+- Este proyecto ha resultado un reto a la hora de integrar todos los conocimientos aprendidos en un solo proyecto , y teniendo en cuenta las limitaciones de la API mas el tiempo disponible.
+- Consideramos que el trabajo se considera un notable siendo optimistas ya que falta mejorar la BD
+- El tiempo estimado sumando me llega aproximadamente a unas 30 horas de trabajo 
